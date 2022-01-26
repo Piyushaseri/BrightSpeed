@@ -1,0 +1,117 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Update Personal Information",
+    "description" : "API to update Personal Information",
+    "contact" : {
+      "email" : "ramya@techmahindra.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/Brightspeed/personaldetails/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "https://virtserver.swaggerhub.com/Brightspeed/testapi/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/updatepersonalinfo" : {
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "update personal details",
+        "description" : "Update Personal Details",
+        "operationId" : "updateperrsonaldetails",
+        "requestBody" : {
+          "description" : "Update Personal Details",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PersonalDetails"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Details Updated Successfully"
+          },
+          "400" : {
+            "description" : "Details Updated Successfully"
+          },
+          "500" : {
+            "description" : "invalid input, object invalid"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "PersonalDetails" : {
+        "required" : [ "alternateno", "emailid", "id", "resitentialaddress" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "rc83990"
+          },
+          "emailid:" : {
+            "type" : "string",
+            "format" : "email",
+            "example" : "Ramyakrishna.g9@gmail.com"
+          },
+          "resitentialaddress:" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "24 Washigton DC"
+          },
+          "account" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AccountDetails"
+            }
+          }
+        }
+      },
+      "AccountDetails" : {
+        "properties" : {
+          "owner:" : {
+            "type" : "string",
+            "example" : "Ramya Krishna"
+          },
+          "customerId:" : {
+            "pattern" : "^\\d{1}-\\d{13}$",
+            "type" : "string",
+            "example" : "1-2521436614883"
+          },
+          "service:" : {
+            "type" : "string",
+            "example" : "Postpaid"
+          },
+          "alternatecontactno" : {
+            "pattern" : "^\\d{10}$",
+            "type" : "string",
+            "example" : "+1(703)505-4753"
+          },
+          "status" : {
+            "type" : "string",
+            "enum" : [ "Active", "Inactive", "Hold" ]
+          }
+        }
+      }
+    }
+  }
+}
